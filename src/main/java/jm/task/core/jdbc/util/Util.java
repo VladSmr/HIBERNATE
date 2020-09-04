@@ -7,48 +7,13 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
-import org.hibernate.service.Service;
 import org.hibernate.service.ServiceRegistry;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Properties;
+
 
 public class Util {
     // реализуйте настройку соеденения с БД
-   /* private static SessionFactory sessionFactory;
-
-    public static SessionFactory getSessionFactory() {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.addAnnotatedClass(User.class);
-            configuration.setProperties(getProperties());
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .applySettings(configuration.getProperties()).build();
-            sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-            System.out.println("SessionFactory created successfully");
-        } catch (Exception e) {
-            System.out.println("**** Got some exception creating sessionFactory");
-            e.printStackTrace();
-        }
-        return sessionFactory;
-    }
-
-    private static Properties getProperties() {
-        Properties properties = new Properties();
-        properties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
-        properties.put(Environment.URL, "jdbc:MySQL://localhost:3306/sys?useSSL=true&verifyServerCertificate=false&serverTimezone=UTC");
-        properties.put(Environment.USER, "root");
-        properties.put(Environment.PASS, "godzun@1966");
-        properties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-        properties.put(Environment.SHOW_SQL, "true");
-        properties.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-        properties.put(Environment.HBM2DDL_AUTO, "update");
-        return properties;
-    }
-*/
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
@@ -77,5 +42,4 @@ public class Util {
         ServiceRegistry serviceRegistry = builder.build();
         return configuration.buildSessionFactory(serviceRegistry);
     }
-
 }

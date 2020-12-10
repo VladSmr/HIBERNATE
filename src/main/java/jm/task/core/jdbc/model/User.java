@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Users")
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -19,7 +20,6 @@ public class User {
     private Byte age;
 
     public User() {
-
     }
 
     public User(String name, String lastName, Byte age) {

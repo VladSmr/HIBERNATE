@@ -12,11 +12,10 @@ public class UserDaoHibernateImpl implements UserDao {
     public UserDaoHibernateImpl() {
     }
 
-    // создать таблицу
     @Override
     public void createUsersTable() {
         Session session = null;
-        Transaction tx = null;
+        Transaction tx;
         try {
             session = Util.getSessionFactory().openSession();
             tx = session.beginTransaction();
@@ -24,18 +23,17 @@ public class UserDaoHibernateImpl implements UserDao {
             tx.commit();
             System.out.println("Table was created successfully");
         } catch (Exception e) {
-            System.out.println("**** got some exception creating table");
-            e.printStackTrace();
+            throw new RuntimeException("**** got some exception creating table", e);
         } finally {
+            assert session != null;
             session.close();
         }
     }
 
-    // удалить всю таблицу
     @Override
     public void dropUsersTable() {
         Session session = null;
-        Transaction tx = null;
+        Transaction tx;
         try {
             session = Util.getSessionFactory().openSession();
             tx = session.beginTransaction();
@@ -43,18 +41,17 @@ public class UserDaoHibernateImpl implements UserDao {
             tx.commit();
             System.out.println("Table was dropped successfully");
         } catch (Exception e) {
-            System.out.println("**** got some exception dropping table");
-            e.printStackTrace();
+            throw new RuntimeException("**** got some exception dropping table", e);
         } finally {
+            assert session != null;
             session.close();
         }
     }
 
-    // сохранить юзера
     @Override
     public void saveUser(String name, String lastName, byte age) {
         Session session = null;
-        Transaction tx = null;
+        Transaction tx;
         try {
             session = Util.getSessionFactory().openSession();
             tx = session.beginTransaction();
@@ -62,18 +59,17 @@ public class UserDaoHibernateImpl implements UserDao {
             tx.commit();
             System.out.println("User с именем – " + name + " добавлен в базу данных");
         } catch (Exception e) {
-            System.out.println("**** got some exception saving user");
-            e.printStackTrace();
+            throw new RuntimeException("**** got some exception saving user", e);
         } finally {
+            assert session != null;
             session.close();
         }
     }
 
-    // удалить юзера по ид
     @Override
     public void removeUserById(long id) {
         Session session = null;
-        Transaction tx = null;
+        Transaction tx;
         try {
             session = Util.getSessionFactory().openSession();
             tx = session.beginTransaction();
@@ -81,37 +77,34 @@ public class UserDaoHibernateImpl implements UserDao {
             tx.commit();
             System.out.println("User was removed successfully");
         } catch (Exception e) {
-            System.out.println("**** got some exception removing user");
-            e.printStackTrace();
+            throw new RuntimeException("**** got some exception removing user", e);
         } finally {
+            assert session != null;
             session.close();
         }
     }
 
-    // получить всех юзеров
     @Override
     public List<User> getAllUsers() {
         Session session = null;
-        Transaction tx = null;
-        List<User> allUsers = null;
+        List<User> allUsers;
         try {
             session = Util.getSessionFactory().openSession();
             allUsers = session.createQuery("FROM User").list();
             System.out.println("All users were got successfully");
         } catch (Exception e) {
-            System.out.println("**** got some exception getting all users");
-            e.printStackTrace();
+            throw new RuntimeException("**** got some exception getting all users", e);
         } finally {
+            assert session != null;
             session.close();
         }
         return allUsers;
     }
 
-    // очистить таблицу
     @Override
     public void cleanUsersTable() {
         Session session = null;
-        Transaction tx = null;
+        Transaction tx;
         try {
             session = Util.getSessionFactory().openSession();
             tx = session.beginTransaction();
@@ -119,9 +112,9 @@ public class UserDaoHibernateImpl implements UserDao {
             tx.commit();
             System.out.println("Table was cleaned successfully");
         } catch (Exception e) {
-            System.out.println("**** got some exception getting all users");
-            e.printStackTrace();
+            throw new RuntimeException("**** got some exception getting all users", e);
         } finally {
+            assert session != null;
             session.close();
         }
     }
